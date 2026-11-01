@@ -1,0 +1,10 @@
+<%- include('partials/head') %>
+<form class="card" method="post" action="/reset/<%= token %>"><h1>Новий пароль</h1>
+<% if (errors.length) { %><div class="flash err" role="alert"><ul><% errors.forEach(e => { %><li><%= e %></li><% }) %></ul></div><% } %>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<label>Новий пароль<input type="password" name="password" id="password" required autocomplete="new-password"></label>
+<div class="meter"><div id="meterBar"></div></div><div id="meterText" class="muted">Введіть пароль</div>
+<ul id="rules" class="rules" data-rules='<%- JSON.stringify(rules) %>'></ul>
+<label>Підтвердження<input type="password" name="confirm" required autocomplete="new-password"></label>
+<button class="btn">Змінити пароль</button></form>
+<%- include('partials/foot') %>

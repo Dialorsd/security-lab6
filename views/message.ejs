@@ -1,0 +1,4 @@
+<%- include('partials/head') %>
+<div class="card"><h1><%= ok ? '✅' : '⚠️' %> <%= title %></h1><p><%= message %></p>
+<% if (link) { %><p><a class="btn" href="<%= link[0] %>"><%= link[1] %></a></p><% } %></div>
+<%- include('partials/foot') %>

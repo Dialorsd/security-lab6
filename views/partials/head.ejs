@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= title %> · Lab6</title><link rel="stylesheet" href="/style.css"></head><body>
+<header class="top"><a class="brand" href="/">Lab6</a>
+<nav>
+<% if (user) { %>
+  <a href="/profile">Профіль</a>
+  <% if (user.role === 'admin') { %><a href="/admin">Користувачі</a><a href="/admin/log">Журнал входів</a><% } %>
+  <a href="/mailbox">Пошта (dev)</a>
+  <form method="post" action="/logout" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="link">Вийти (<%= user.name %>)</button></form>
+<% } else { %>
+  <a href="/login">Вхід</a><a href="/register">Реєстрація</a><a href="/mailbox">Пошта (dev)</a>
+<% } %>
+</nav></header>
+<main>
+<% if (flash) { %><div class="flash <%= flash.type %>" role="status"><%= flash.text %></div><% } %>

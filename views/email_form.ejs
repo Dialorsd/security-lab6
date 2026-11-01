@@ -1,0 +1,6 @@
+<%- include('partials/head') %>
+<form class="card" method="post" action="<%= action %>"><h1><%= title %></h1><p><%= hint %></p>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<label>Email<input type="email" name="email" required autofocus></label>
+<button class="btn">Надіслати</button></form>
+<%- include('partials/foot') %>

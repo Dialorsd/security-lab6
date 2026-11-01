@@ -1,0 +1,7 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dev IdP — вибір облікового запису</title><link rel="stylesheet" href="/style.css"></head>
+<body><main><form class="card" method="post" action="/idp/authorize"><h1>🔑 Dev IdP</h1>
+<p>Застосунок <b>Lab6</b> запитує доступ до: ім'я, email.</p>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<% ['client_id','redirect_uri','state'].forEach(k => { %><input type="hidden" name="<%= k %>" value="<%= q[k] %>"><% }) %>
+<% accounts.forEach(a => { %><button class="btn alt wide acc" name="sub" value="<%= a.sub %>"><b><%= a.name %></b><br><small><%= a.email %></small></button><% }) %>
+</form></main></body></html>

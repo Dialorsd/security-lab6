@@ -1,0 +1,11 @@
+<%- include('partials/head') %>
+<div class="card"><h1>Профіль</h1>
+<table class="kv"><tr><th>Ім'я</th><td><%= user.name %></td></tr><tr><th>Email</th><td><%= user.email %> <span class="tag ok">підтверджено</span></td></tr>
+<tr><th>Роль</th><td><span class="tag"><%= user.role %></span></td></tr>
+<tr><th>Вхід через OAuth</th><td><%= user.oidc_sub ? 'так (' + user.oidc_sub + ')' : 'ні' %></td></tr>
+<tr><th>Двофакторна автентифікація</th><td><% if (user.totp_enabled) { %><span class="tag ok">увімкнена</span><% } else { %><span class="tag warn">вимкнена</span> <a class="btn small" href="/profile/2fa">Увімкнути 2FA</a><% } %></td></tr></table>
+<% if (user.totp_enabled) { %>
+<form method="post" action="/profile/2fa/disable" class="row"><input type="hidden" name="_csrf" value="<%= csrf %>">
+<% if (user.password_hash) { %><input type="password" name="password" placeholder="Пароль для підтвердження" required><% } %>
+<button class="btn danger small">Вимкнути 2FA</button></form><% } %></div>
+<%- include('partials/foot') %>

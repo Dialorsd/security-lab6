@@ -1,0 +1,7 @@
+<%- include('partials/head') %>
+<h1>Журнал входів</h1><p class="muted">Останні 200 подій: IP-адреса, час, результат.</p>
+<div class="scroll"><table class="grid"><thead><tr><th>#</th><th>Час</th><th>Email</th><th>IP</th><th>Результат</th><th>Причина</th><th>User-Agent</th></tr></thead><tbody>
+<% rows.forEach(r => { const cls = {success:'ok',register:'ok',activated:'ok',fail:'warn',denied:'bad',locked:'bad'}[r.result] || ''; %>
+<tr><td><%= r.id %></td><td><%= r.created_at %></td><td><%= r.email || '—' %></td><td><%= r.ip %></td><td><span class="tag <%= cls %>"><%= r.result %></span></td><td><%= r.reason || '' %></td><td class="ua"><%= r.user_agent %></td></tr>
+<% }) %></tbody></table></div>
+<%- include('partials/foot') %>

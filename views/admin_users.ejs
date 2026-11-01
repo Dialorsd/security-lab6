@@ -1,0 +1,13 @@
+<%- include('partials/head') %>
+<h1>Користувачі</h1>
+<div class="scroll"><table class="grid"><thead><tr><th>ID</th><th>Email</th><th>Ім'я</th><th>Роль</th><th>Статус</th><th>2FA</th><th>Створено</th><th>Дії</th></tr></thead><tbody>
+<% users.forEach(u => { %><tr>
+<td><%= u.id %></td><td><%= u.email %></td><td><%= u.name %></td><td><span class="tag"><%= u.role %></span></td>
+<td><% if (u.is_blocked) { %><span class="tag bad">заблоковано</span><% } else if (u.locked) { %><span class="tag warn">тимчасовий lock</span><% } else if (!u.is_active) { %><span class="tag warn">не активовано</span><% } else { %><span class="tag ok">активний</span><% } %></td>
+<td><%= u.totp_enabled ? 'так' : 'ні' %></td><td><%= u.created_at %></td>
+<td class="actions">
+<% const f = (a, label, cls='') => { %><form method="post" action="/admin/users/<%= u.id %>/<%= a %>"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn small <%= cls %>"><%= label %></button></form><% } %>
+<% if (u.is_blocked || u.locked) { f('unblock', 'Розблокувати'); } else if (u.id !== user.id) { f('block', 'Заблокувати', 'danger'); } %>
+<% if (u.id !== user.id) { if (u.role === 'user') { f('promote', '→ admin', 'alt'); } else { f('demote', '→ user', 'alt'); } } %>
+</td></tr><% }) %></tbody></table></div>
+<%- include('partials/foot') %>

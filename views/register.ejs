@@ -1,0 +1,15 @@
+<%- include('partials/head') %>
+<form class="card" method="post" action="/register" novalidate id="regForm"><h1>Реєстрація</h1>
+<% if (errors.length) { %><div class="flash err" role="alert"><ul><% errors.forEach(e => { %><li><%= e %></li><% }) %></ul></div><% } %>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<label>Ім'я<input name="name" value="<%= form.name || '' %>" required maxlength="60"></label>
+<label>Email<input type="email" name="email" value="<%= form.email || '' %>" required></label>
+<label>Пароль<input type="password" name="password" id="password" required autocomplete="new-password"></label>
+<div class="meter"><div id="meterBar"></div></div><div id="meterText" class="muted">Введіть пароль</div>
+<ul id="rules" class="rules" data-rules='<%- JSON.stringify(rules) %>'></ul>
+<label>Підтвердження пароля<input type="password" name="confirm" required autocomplete="new-password"></label>
+<div class="captcha"><img id="captchaImg" src="/captcha" alt="CAPTCHA" width="150" height="50"><button type="button" class="link" id="captchaReload">↻ Оновити</button></div>
+<label>Введіть символи з картинки<input name="captcha" autocomplete="off" required></label>
+<button class="btn">Зареєструватися</button>
+<p class="muted">Вже є акаунт? <a href="/login">Увійти</a></p></form>
+<%- include('partials/foot') %>

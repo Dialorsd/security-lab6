@@ -1,0 +1,6 @@
+<%- include('partials/head') %>
+<h1>Безпечна система управління обліковими записами</h1>
+<p>Навчальний вебзастосунок: політика паролів, CAPTCHA, активація через email, захист від підбору паролів, двофакторна автентифікація, вхід через OAuth/OpenID Connect, відновлення пароля та рольовий доступ.</p>
+<% if (!user) { %><p><a class="btn" href="/register">Створити акаунт</a> <a class="btn alt" href="/login">Увійти</a></p>
+<% } else { %><p>Ви увійшли як <b><%= user.email %></b>. <a class="btn" href="/profile">До профілю</a></p><% } %>
+<%- include('partials/foot') %>

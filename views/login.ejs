@@ -1,0 +1,10 @@
+<%- include('partials/head') %>
+<form class="card" method="post" action="/login"><h1>Вхід</h1>
+<% if (error) { %><div class="flash err" role="alert"><%= error %></div><% } %>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<label>Email<input type="email" name="email" value="<%= email %>" required autofocus></label>
+<label>Пароль<input type="password" name="password" required autocomplete="current-password"></label>
+<button class="btn">Увійти</button>
+<p class="muted"><a href="/forgot">Забули пароль?</a> · <a href="/register">Реєстрація</a> · <a href="/resend">Не отримали лист активації?</a></p>
+<hr><a class="btn alt wide" href="/auth/oidc">Увійти через <%= oidcName %> (OpenID Connect)</a></form>
+<%- include('partials/foot') %>

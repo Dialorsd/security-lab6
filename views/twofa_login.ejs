@@ -1,0 +1,8 @@
+<%- include('partials/head') %>
+<form class="card" method="post" action="/2fa"><h1>Двофакторна автентифікація</h1>
+<% if (error) { %><div class="flash err" role="alert"><%= error %></div><% } %>
+<p>Введіть 6-значний код із застосунку-автентифікатора (Google Authenticator, Authy…).</p>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<label>Код<input name="code" inputmode="numeric" pattern="[0-9 ]{6,7}" maxlength="7" autocomplete="one-time-code" required autofocus></label>
+<button class="btn">Підтвердити</button></form>
+<%- include('partials/foot') %>

@@ -1,0 +1,5 @@
+<%- include('partials/head') %>
+<h1>📬 Dev-поштова скринька</h1><p class="muted">Імітація поштового сервера: тут з'являються листи активації та скидання пароля (у production вони відправляються через SMTP).</p>
+<% if (!mails.length) { %><p>Листів поки немає.</p><% } %>
+<% mails.forEach(m => { %><article class="mail"><header><b><%= m.subject %></b><span>Кому: <%= m.to_addr %> · <%= m.created_at %></span></header><pre><%- linkify(m.body.replace(/&/g,'&amp;').replace(/</g,'&lt;')) %></pre></article><% }) %>
+<%- include('partials/foot') %>

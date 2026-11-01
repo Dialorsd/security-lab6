@@ -1,0 +1,10 @@
+<%- include('partials/head') %>
+<form class="card" method="post" action="/profile/2fa/enable"><h1>Увімкнення 2FA</h1>
+<% if (error) { %><div class="flash err" role="alert"><%= error %></div><% } %>
+<ol><li>Відскануйте QR-код у застосунку-автентифікаторі.</li><li>Введіть 6-значний код для підтвердження.</li></ol>
+<img src="<%= qr %>" alt="QR-код TOTP" width="200" height="200">
+<p class="muted">Або введіть ключ вручну: <code><%= secret %></code></p>
+<input type="hidden" name="_csrf" value="<%= csrf %>">
+<label>Код із застосунку<input name="code" inputmode="numeric" maxlength="7" autocomplete="off" required></label>
+<button class="btn">Увімкнути</button> <a href="/profile">Скасувати</a></form>
+<%- include('partials/foot') %>
